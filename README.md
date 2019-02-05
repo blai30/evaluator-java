@@ -1,10 +1,10 @@
 # CSC 413 - Project One
 
-## Student Name  : Name here
+## Student Name  : Brian Lai
 
-## Student ID    : ID here
+## Student ID    : 916818167
 
-## Student Email : Email here
+## Student Email : blai2@mail.sfsu.edu
 
 ### Note failure to completely fill out this README.md could cause you to recieve a  0 for your project until correctly done
 
