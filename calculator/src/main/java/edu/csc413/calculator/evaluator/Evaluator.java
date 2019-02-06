@@ -18,12 +18,12 @@ public class Evaluator {
         operatorStack = new Stack<>();
     }
 
-    public int eval( String expression ) {
+    public int eval(String expression) {
         String token;
 
         // The 3rd argument is true to indicate that the delimiters should be used
         // as tokens, too. But, we'll need to remember to filter out spaces.
-        this.tokenizer = new StringTokenizer( expression, DELIMITERS, true );
+        this.tokenizer = new StringTokenizer(expression, DELIMITERS, true);
 
         // initialize operator stack - necessary with operator priority schema
         // the priority of any operator in the operator stack other than
@@ -32,15 +32,15 @@ public class Evaluator {
 
 
 
-        while ( this.tokenizer.hasMoreTokens() ) {
+        while (this.tokenizer.hasMoreTokens()) {
             // filter out spaces
-            if ( !( token = this.tokenizer.nextToken() ).equals( " " )) {
+            if (!(token = this.tokenizer.nextToken()).equals(" ")) {
                 // check if token is an operand
-                if ( Operand.check( token )) {
-                    operandStack.push( new Operand( token ));
+                if (Operand.check(token)) {
+                    operandStack.push( new Operand(token));
                 } else {
-                    if ( ! Operator.check( token )) {
-                        System.out.println( "*****invalid token******" );
+                    if (!Operator.check(token)) {
+                        System.out.println("*****invalid token******");
                         throw new RuntimeException("*****invalid token******");
                     }
 
@@ -51,7 +51,7 @@ public class Evaluator {
                     // skeleton for an example.
                     Operator newOperator = new Operator();
 
-                    while (operatorStack.peek().priority() >= newOperator.priority() ) {
+                    while (operatorStack.peek().priority() >= newOperator.priority()) {
                         // note that when we eval the expression 1 - 2 we will
                         // push the 1 then the 2 and then do the subtraction operation
                         // This means that the first number to be popped is the
@@ -59,10 +59,10 @@ public class Evaluator {
                         Operator oldOpr = operatorStack.pop();
                         Operand op2 = operandStack.pop();
                         Operand op1 = operandStack.pop();
-                        operandStack.push( oldOpr.execute( op1, op2 ));
+                        operandStack.push(oldOpr.execute(op1, op2));
                     }
 
-                    operatorStack.push( newOperator );
+                    operatorStack.push(newOperator);
                 }
             }
         }
