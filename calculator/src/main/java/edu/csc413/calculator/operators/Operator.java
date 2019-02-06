@@ -20,7 +20,7 @@ public abstract class Operator {
     
     
     public abstract int priority();
-    public abstract Operand execute(Operand op1, Operand op2 );
+    public abstract Operand execute(Operand op1, Operand op2);
 
 
     /**
@@ -29,10 +29,12 @@ public abstract class Operator {
      * for example token.equals("+") and so on.
      * Think about what happens if we add more operators.
      */
-    public static boolean check( String token ) {
+    public static boolean check(String token) {
         return false;
     }
 
 
-    public static Operator getOperator(String token){return null;}
+    public static Operator getOperator(String token) {
+        return null;
+    }
 }
