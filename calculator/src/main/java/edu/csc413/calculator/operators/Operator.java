@@ -44,6 +44,6 @@ public abstract class Operator {
     }
 
     public static Operator getOperator(String token) {
-        return null;
+        return op.get(token);
     }
 }

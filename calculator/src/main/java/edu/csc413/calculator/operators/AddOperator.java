@@ -10,6 +10,6 @@ public class AddOperator extends Operator {
 
     @Override
     public Operand execute(Operand op1, Operand op2) {
-        return null;
+        return new Operand(op1.getValue() + op2.getValue());
     }
 }
