@@ -37,7 +37,7 @@ public class Evaluator {
             if (!(token = this.tokenizer.nextToken()).equals(" ")) {
                 // check if token is an operand
                 if (Operand.check(token)) {
-                    operandStack.push( new Operand(token));
+                    operandStack.push(new Operand(token));
                 } else {
                     if (!Operator.check(token)) {
                         System.out.println("*****invalid token******");
@@ -81,4 +81,6 @@ public class Evaluator {
 
         return 0;
     }
+
+
 }
