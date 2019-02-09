@@ -64,7 +64,13 @@ public class EvaluatorUI extends JFrame implements ActionListener {
         setVisible(true);
     }
 
+    private int calculate(String expression) {
+        Evaluator ev = new Evaluator();
+        return ev.eval(expression);
+    }
+
     public void actionPerformed(ActionEvent arg0) {
         // You need to fill in this fuction
+        txField.setText(arg0.getActionCommand());
     }
 }

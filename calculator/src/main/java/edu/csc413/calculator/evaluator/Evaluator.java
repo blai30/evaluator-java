@@ -18,6 +18,14 @@ public class Evaluator {
         operatorStack = new Stack<>();
     }
 
+    private void exec(Operator op) {
+        while (op.priority() > 0) {
+            Operand op2 = operandStack.pop();
+            Operand op1 = operandStack.pop();
+            operandStack.push(op.execute(op1, op2));
+        }
+    }
+
     public int eval(String expression) {
         String token;
 
@@ -44,12 +52,25 @@ public class Evaluator {
                         throw new RuntimeException("*****invalid token******");
                     }
 
+                    if (token.equals(")")) {
+
+                    }
+
+                    if (token.equals("(")) {
+
+                    }
+
 
                     // TODO Operator is abstract - these two lines will need to be fixed:
                     // The Operator class should contain an instance of a HashMap,
                     // and values will be instances of the Operators.  See Operator class
                     // skeleton for an example.
-                    Operator newOperator = new Operator();
+                    Operator newOperator = Operator.getOperator(token);
+
+                    if (operatorStack.isEmpty()) {
+                        operatorStack.push(newOperator);
+                        continue;
+                    }
 
                     while (operatorStack.peek().priority() >= newOperator.priority()) {
                         // note that when we eval the expression 1 - 2 we will
@@ -79,7 +100,9 @@ public class Evaluator {
         // Suggestion: create a method that takes an operator as argument and
         // then executes the while loop.
 
-        return 0;
+        exec(operatorStack.pop());
+
+        return operandStack.pop().getValue();
     }
 
 
