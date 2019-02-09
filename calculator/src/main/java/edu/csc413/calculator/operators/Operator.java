@@ -18,14 +18,14 @@ public abstract class Operator {
     // operators.put( "+", new AdditionOperator() );
     // operators.put( "-", new SubtractionOperator() );
 
-    private static HashMap<String, Operator> op;
+    private static final HashMap<String, Operator> OPERATORS;
     static {
-        op = new HashMap<>();
-        op.put("+", new AddOperator());
-        op.put("-", new SubtractOperator());
-        op.put("*", new MultiplyOperator());
-        op.put("/", new DivideOperator());
-        op.put("^", new PowerOperator());
+        OPERATORS = new HashMap<>();
+        OPERATORS.put("+", new AddOperator());
+        OPERATORS.put("-", new SubtractOperator());
+        OPERATORS.put("*", new MultiplyOperator());
+        OPERATORS.put("/", new DivideOperator());
+        OPERATORS.put("^", new PowerOperator());
     }
     
     
@@ -40,10 +40,10 @@ public abstract class Operator {
      * Think about what happens if we add more operators.
      */
     public static boolean check(String token) {
-        return op.containsKey(token);
+        return OPERATORS.containsKey(token);
     }
 
     public static Operator getOperator(String token) {
-        return op.get(token);
+        return OPERATORS.get(token);
     }
 }
