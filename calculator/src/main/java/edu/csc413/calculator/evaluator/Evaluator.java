@@ -67,11 +67,6 @@ public class Evaluator {
                     // skeleton for an example.
                     Operator newOperator = Operator.getOperator(token);
 
-                    if (operatorStack.isEmpty()) {
-                        operatorStack.push(newOperator);
-                        continue;
-                    }
-
                     while (operatorStack.peek().priority() >= newOperator.priority()) {
                         // note that when we eval the expression 1 - 2 we will
                         // push the 1 then the 2 and then do the subtraction operation
