@@ -2,6 +2,7 @@ package edu.csc413.calculator.evaluator;
 
 
 
+import edu.csc413.calculator.operators.OpenOperator;
 import edu.csc413.calculator.operators.Operator;
 
 import java.util.Stack;
@@ -55,7 +56,8 @@ public class Evaluator {
                     }
 
                     if (token.equals("(")) {
-
+                        operatorStack.push(new OpenOperator());
+                        continue;
                     }
 
 
@@ -65,14 +67,12 @@ public class Evaluator {
                     // skeleton for an example.
                     Operator newOperator = Operator.getOperator(token);
 
-                    if (!operatorStack.isEmpty()) {
-                        while (operatorStack.peek().priority() >= newOperator.priority()) {
-                            // note that when we eval the expression 1 - 2 we will
-                            // push the 1 then the 2 and then do the subtraction operation
-                            // This means that the first number to be popped is the
-                            // second operand, not the first operand - see the following code
-                            exec(operatorStack.pop());
-                        }
+                    while (!operatorStack.isEmpty() && operatorStack.peek().priority() >= newOperator.priority()) {
+                        // note that when we eval the expression 1 - 2 we will
+                        // push the 1 then the 2 and then do the subtraction operation
+                        // This means that the first number to be popped is the
+                        // second operand, not the first operand - see the following code
+                        exec(operatorStack.pop());
                     }
 
                     operatorStack.push(newOperator);

@@ -26,6 +26,8 @@ public abstract class Operator {
         OPERATORS.put("*", new MultiplyOperator());
         OPERATORS.put("/", new DivideOperator());
         OPERATORS.put("^", new PowerOperator());
+        OPERATORS.put("(", new OpenOperator());
+        OPERATORS.put(")", new CloseOperator());
     }
     
     
