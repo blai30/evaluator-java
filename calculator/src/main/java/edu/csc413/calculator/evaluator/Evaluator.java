@@ -19,11 +19,9 @@ public class Evaluator {
     }
 
     private void exec(Operator op) {
-        while (op.priority() > 0) {
-            Operand op2 = operandStack.pop();
-            Operand op1 = operandStack.pop();
-            operandStack.push(op.execute(op1, op2));
-        }
+        Operand op2 = operandStack.pop();
+        Operand op1 = operandStack.pop();
+        operandStack.push(op.execute(op1, op2));
     }
 
     public int eval(String expression) {
@@ -67,15 +65,14 @@ public class Evaluator {
                     // skeleton for an example.
                     Operator newOperator = Operator.getOperator(token);
 
-                    while (operatorStack.peek().priority() >= newOperator.priority()) {
-                        // note that when we eval the expression 1 - 2 we will
-                        // push the 1 then the 2 and then do the subtraction operation
-                        // This means that the first number to be popped is the
-                        // second operand, not the first operand - see the following code
-                        Operator oldOpr = operatorStack.pop();
-                        Operand op2 = operandStack.pop();
-                        Operand op1 = operandStack.pop();
-                        operandStack.push(oldOpr.execute(op1, op2));
+                    if (!operatorStack.isEmpty()) {
+                        while (operatorStack.peek().priority() >= newOperator.priority()) {
+                            // note that when we eval the expression 1 - 2 we will
+                            // push the 1 then the 2 and then do the subtraction operation
+                            // This means that the first number to be popped is the
+                            // second operand, not the first operand - see the following code
+                            exec(operatorStack.pop());
+                        }
                     }
 
                     operatorStack.push(newOperator);
@@ -95,7 +92,9 @@ public class Evaluator {
         // Suggestion: create a method that takes an operator as argument and
         // then executes the while loop.
 
-        exec(operatorStack.pop());
+        while (!operatorStack.isEmpty()) {
+            exec(operatorStack.pop());
+        }
 
         return operandStack.pop().getValue();
     }
