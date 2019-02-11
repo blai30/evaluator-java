@@ -17,6 +17,9 @@ public class OperatorTester {
         assertFalse(Operator.check("156.0"));
         assertFalse(Operator.check("x"));
         assertFalse(Operator.check("**"));
+
+        assertTrue(Operator.check("("));
+        assertTrue(Operator.check(")"));
     }
 
     @Test
@@ -33,5 +36,10 @@ public class OperatorTester {
         assertTrue(op instanceof PowerOperator);
         op = Operator.getOperator("c");
         assertTrue(op == null);
+
+        op = Operator.getOperator("(");
+        assertTrue(op instanceof OpenOperator);
+        op = Operator.getOperator(")");
+        assertTrue(op instanceof CloseOperator);
     }
 }
