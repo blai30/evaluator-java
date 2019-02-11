@@ -52,14 +52,16 @@ public class Evaluator {
                     }
 
                     if (token.equals(")")) {
-
+                        while (!operatorStack.isEmpty()) {
+                            exec(operatorStack.pop());
+                        }
+                        continue;
                     }
 
                     if (token.equals("(")) {
                         operatorStack.push(new OpenOperator());
                         continue;
                     }
-
 
                     // TODO Operator is abstract - these two lines will need to be fixed:
                     // The Operator class should contain an instance of a HashMap,
