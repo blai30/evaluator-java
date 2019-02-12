@@ -18,7 +18,7 @@ public class Evaluator {
         operatorStack = new Stack<>();
     }
 
-    private void exec(Operator op) {
+    private void process(Operator op) {
         Operand op2 = operandStack.pop();
         Operand op1 = operandStack.pop();
         operandStack.push(op.execute(op1, op2));
@@ -47,7 +47,7 @@ public class Evaluator {
                 } else if (token.equals(")")) {
                     // Start evaluating the stack until next parenthesis
                     while (operatorStack.peek().priority() != 0) {
-                        exec(operatorStack.pop());
+                        process(operatorStack.pop());
                     }
                     // Pop remaining "(" or ")"
                     operatorStack.pop();
@@ -68,7 +68,7 @@ public class Evaluator {
                         // push the 1 then the 2 and then do the subtraction operation
                         // This means that the first number to be popped is the
                         // second operand, not the first operand - see the following code
-                        exec(operatorStack.pop());
+                        process(operatorStack.pop());
                     }
 
                     operatorStack.push(newOperator);
@@ -89,7 +89,7 @@ public class Evaluator {
 
         // Evaluate the remaining expression
         while (!operatorStack.isEmpty()) {
-            exec(operatorStack.pop());
+            process(operatorStack.pop());
         }
 
         // Last operand in operandStack will be the result of the expression
