@@ -40,7 +40,6 @@ public class Operand {
             Integer.parseInt(token);
             return true;
         } catch (NumberFormatException e) {
-            System.out.println(e + ": given string is not a valid operand.");
             return false;
         }
     }
