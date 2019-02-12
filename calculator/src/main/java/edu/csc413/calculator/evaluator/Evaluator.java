@@ -44,10 +44,10 @@ public class Evaluator {
                 // check if token is an operand
                 if (Operand.check(token)) {
                     operandStack.push(new Operand(token));
-                } else if ((token.equals("("))) {
+                } else if (token.equals("(")) {
                     operatorStack.push(Operator.getOperator(token));
-                } else if ((token.equals(")"))) {
-                    while (!operatorStack.peek().equals(Operator.getOperator("("))) {
+                } else if (token.equals(")")) {
+                    while (operatorStack.peek().priority() != 0) {
                         exec(operatorStack.pop());
                     }
                     operatorStack.pop();
@@ -56,8 +56,6 @@ public class Evaluator {
                         System.out.println("*****invalid token******");
                         throw new RuntimeException("*****invalid token******");
                     }
-
-
 
                     // TODO Operator is abstract - these two lines will need to be fixed:
                     // The Operator class should contain an instance of a HashMap,
