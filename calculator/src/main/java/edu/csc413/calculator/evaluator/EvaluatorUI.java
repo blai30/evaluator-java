@@ -70,7 +70,7 @@ public class EvaluatorUI extends JFrame implements ActionListener {
     }
 
     public void actionPerformed(ActionEvent arg0) {
-        // You need to fill in this fuction
+        // You need to fill in this function
         txField.setText(arg0.getActionCommand());
     }
 }
