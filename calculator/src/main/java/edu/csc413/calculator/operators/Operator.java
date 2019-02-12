@@ -48,4 +48,9 @@ public abstract class Operator {
     public static Operator getOperator(String token) {
         return OPERATORS.get(token);
     }
+
+    // Used for DELIMITERS in Evaluator to get all keys from HashMap into one string
+    public static String getKeysString() {
+        return OPERATORS.keySet().toString();
+    }
 }
