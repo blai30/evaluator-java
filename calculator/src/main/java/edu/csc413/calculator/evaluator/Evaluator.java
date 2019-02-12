@@ -2,7 +2,6 @@ package edu.csc413.calculator.evaluator;
 
 
 
-import edu.csc413.calculator.operators.OpenOperator;
 import edu.csc413.calculator.operators.Operator;
 
 import java.util.Stack;
@@ -12,7 +11,7 @@ public class Evaluator {
     private Stack<Operand> operandStack;
     private Stack<Operator> operatorStack;
     private StringTokenizer tokenizer;
-    private static final String DELIMITERS = "+-*^/";
+    private static final String DELIMITERS = "+-*^/() ";
 
     public Evaluator() {
         operandStack = new Stack<>();
@@ -45,23 +44,20 @@ public class Evaluator {
                 // check if token is an operand
                 if (Operand.check(token)) {
                     operandStack.push(new Operand(token));
+                } else if ((token.equals("("))) {
+                    operatorStack.push(Operator.getOperator(token));
+                } else if ((token.equals(")"))) {
+                    while (!operatorStack.peek().equals(Operator.getOperator("("))) {
+                        exec(operatorStack.pop());
+                    }
+                    operatorStack.pop();
                 } else {
                     if (!Operator.check(token)) {
                         System.out.println("*****invalid token******");
                         throw new RuntimeException("*****invalid token******");
                     }
 
-                    if (token.equals(")")) {
-                        while (!operatorStack.isEmpty()) {
-                            exec(operatorStack.pop());
-                        }
-                        continue;
-                    }
 
-                    if (token.equals("(")) {
-                        operatorStack.push(new OpenOperator());
-                        continue;
-                    }
 
                     // TODO Operator is abstract - these two lines will need to be fixed:
                     // The Operator class should contain an instance of a HashMap,
