@@ -128,12 +128,12 @@ public class EvaluatorTest {
 
     @Test
     void testExpression13() {
-        String exp = "3+2-4/2+7-4/2*5-7+5*4+6-4/2^2+6-3*6^4/4*5^3+1";
+        String exp = "39+2-4/2+7-4/2*5-78+5*4+6-4/2^2+6-3*6^4/4*5^3+1";
         int res;
 
         Evaluator ev = new Evaluator();
         res = ev.eval(exp);
-        assertEquals(-121475, res);
+        assertEquals(-121510, res);
     }
 
 
