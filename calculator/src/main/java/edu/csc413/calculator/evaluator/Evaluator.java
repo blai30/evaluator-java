@@ -36,8 +36,6 @@ public class Evaluator {
         // the usual mathematical operators - "+-*/" - should be less than the priority
         // of the usual operators
 
-
-
         while (this.tokenizer.hasMoreTokens()) {
             // filter out spaces
             if (!(token = this.tokenizer.nextToken()).equals(" ")) {
@@ -76,7 +74,6 @@ public class Evaluator {
             }
         }
 
-
         // Control gets here when we've picked up all of the tokens; you must add
         // code to complete the evaluation - consider how the code given here
         // will evaluate the expression 1+2*3
@@ -94,6 +91,5 @@ public class Evaluator {
 
         return operandStack.pop().getValue();
     }
-
 
 }
