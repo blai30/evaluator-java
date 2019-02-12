@@ -5,7 +5,7 @@ import edu.csc413.calculator.evaluator.Operand;
 public class CloseOperator extends Operator {
     @Override
     public int priority() {
-        return 1;
+        return 0;
     }
 
     @Override
