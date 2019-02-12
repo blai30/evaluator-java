@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.EmptyStackException;
 
 public class EvaluatorUI extends JFrame implements ActionListener {
 
@@ -15,7 +16,7 @@ public class EvaluatorUI extends JFrame implements ActionListener {
     // bText[] array contains the text for corresponding buttons
     private static final String[] bText = {
         "7", "8", "9", "+", "4", "5", "6", "- ", "1", "2", "3",
-        "*", "0", "^", "=", "/", "(", ")", "C", "CE"
+        "*", "0", "(", ")", "/", "C", "CE", "^", "="
     };
 
     /**
@@ -71,16 +72,27 @@ public class EvaluatorUI extends JFrame implements ActionListener {
 
     public void actionPerformed(ActionEvent arg0) {
         // You need to fill in this function
-        if (arg0.getActionCommand().equals("=")) {
-            txField.setText(Integer.toString(calculate(txField.getText())));
-        } else if (arg0.getActionCommand().equals("C")) {
-            txField.setText("");
-        } else if (arg0.getActionCommand().equals("CE")) {
-            if (txField.getText().length() > 0) {
-                txField.setText(txField.getText().substring(0, txField.getText().length() - 1));
-            }
-        } else {
-            txField.setText(txField.getText() + arg0.getActionCommand());
+        switch (arg0.getActionCommand()) {
+            case "=":
+                try {
+                    txField.setText(Integer.toString(calculate(txField.getText())));
+                } catch (EmptyStackException e) {
+                    txField.setText("");
+                    System.out.println(e + ": Invalid expression");
+                }
+                break;
+            case "C":
+                txField.setText("");
+                break;
+            case "CE":
+                // Erases text one character at a time; backspace
+                if (txField.getText().length() > 0) {
+                    txField.setText(txField.getText().substring(0, txField.getText().length() - 1));
+                }
+                break;
+            default:
+                txField.setText(txField.getText() + arg0.getActionCommand());
+                break;
         }
     }
 }
