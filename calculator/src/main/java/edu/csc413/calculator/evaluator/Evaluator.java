@@ -42,15 +42,6 @@ public class Evaluator {
                 // check if token is an operand
                 if (Operand.check(token)) {
                     operandStack.push(new Operand(token));
-                } else if (token.equals("(")) {
-                    operatorStack.push(Operator.getOperator(token));
-                } else if (token.equals(")")) {
-                    // Start evaluating the stack until next parenthesis
-                    while (operatorStack.peek().priority() != 0) {
-                        process(operatorStack.pop());
-                    }
-                    // Pop remaining "(" or ")"
-                    operatorStack.pop();
                 } else {
                     if (!Operator.check(token)) {
                         System.out.println("*****invalid token******");
@@ -62,6 +53,19 @@ public class Evaluator {
                     // and values will be instances of the Operators.  See Operator class
                     // skeleton for an example.
                     Operator newOperator = Operator.getOperator(token);
+
+                    if (token.equals("(")) {
+                        operatorStack.push(newOperator);
+                        continue;
+                    } else if (token.equals(")")) {
+                        // Start evaluating the stack until next parenthesis
+                        while (operatorStack.peek().priority() != 0) {
+                            process(operatorStack.pop());
+                        }
+                        // Pop remaining "("
+                        operatorStack.pop();
+                        continue;
+                    }
 
                     while (!operatorStack.isEmpty() && operatorStack.peek().priority() >= newOperator.priority()) {
                         // note that when we eval the expression 1 - 2 we will
