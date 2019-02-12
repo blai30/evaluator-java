@@ -13,7 +13,7 @@ public class Operand {
         try {
             operand = Integer.parseInt(token);
         } catch (NumberFormatException e) {
-            System.out.println("Exception: string cannot be parsed into int.");
+            System.out.println(e + ": string cannot be parsed into int.");
         }
     }
 
@@ -40,6 +40,7 @@ public class Operand {
             Integer.parseInt(token);
             return true;
         } catch (NumberFormatException e) {
+            System.out.println(e + ": given string is not a valid operand.");
             return false;
         }
     }
