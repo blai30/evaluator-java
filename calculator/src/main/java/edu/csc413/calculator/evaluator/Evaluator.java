@@ -45,9 +45,11 @@ public class Evaluator {
                 } else if (token.equals("(")) {
                     operatorStack.push(Operator.getOperator(token));
                 } else if (token.equals(")")) {
+                    // Start evaluating the stack until next parenthesis
                     while (operatorStack.peek().priority() != 0) {
                         exec(operatorStack.pop());
                     }
+                    // Pop remaining "(" or ")"
                     operatorStack.pop();
                 } else {
                     if (!Operator.check(token)) {
@@ -85,10 +87,12 @@ public class Evaluator {
         // Suggestion: create a method that takes an operator as argument and
         // then executes the while loop.
 
+        // Evaluate the remaining expression
         while (!operatorStack.isEmpty()) {
             exec(operatorStack.pop());
         }
 
+        // Last operand in operandStack will be the result of the expression
         return operandStack.pop().getValue();
     }
 
