@@ -25,8 +25,7 @@ public class Evaluator {
             operandStack.push(op.execute(op1, op2));
         } else {
             Operand op1 = operandStack.pop();
-            Operand op2 = new Operand(0);
-            operandStack.push(op.execute(op1, op2));
+            operandStack.push(op.execute(op1, null));
         }
     }
 

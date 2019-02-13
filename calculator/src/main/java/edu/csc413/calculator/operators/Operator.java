@@ -29,6 +29,7 @@ public abstract class Operator {
         OPERATORS.put("(", new OpenOperator());
         OPERATORS.put(")", new CloseOperator());
         OPERATORS.put("!", new FactorialOperator());
+        OPERATORS.put("%", new ModulusOperator());
     }
     
     
