@@ -158,4 +158,24 @@ public class EvaluatorTest {
         assertEquals(-66, res);
     }
 
+    @Test
+    void testExpression16() {
+        String exp = "5%2";
+        int res;
+
+        Evaluator ev = new Evaluator();
+        res = ev.eval(exp);
+        assertEquals(1, res);
+    }
+
+    @Test
+    void testExpression17() {
+        String exp = "2+3-7*4/(10%4)*4!";
+        int res;
+
+        Evaluator ev = new Evaluator();
+        res = ev.eval(exp);
+        assertEquals(-331, res);
+    }
+
 }
