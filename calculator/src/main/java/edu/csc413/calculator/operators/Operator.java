@@ -28,6 +28,7 @@ public abstract class Operator {
         OPERATORS.put("^", new PowerOperator());
         OPERATORS.put("(", new OpenOperator());
         OPERATORS.put(")", new CloseOperator());
+        OPERATORS.put("!", new FactorialOperator());
     }
     
     
