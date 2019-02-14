@@ -8,6 +8,52 @@
 
 ### Note failure to completely fill out this README.md could cause you to recieve a  0 for your project until correctly done
 
+## File Structure
+```diff
+csc413-p1-blai30
+.
+├── - Assignment1.pdf
+├── - classDiagram.txt
+├── - README.md
+├── calculator/
+│   └── src/
+│       ├── main/
+│       │   └── java/
+│       │       └── edu/
+│       │           └── csc413/
+│       │               └── calculator/
+│       │                   ├── evaluator/
+│       │                   │   ├── + Evaluator.java
+│       │                   │   ├── + EvaluatorDriver.java
+│       │                   │   ├── + EvaluatorUI.java
+│       │                   │   └── + Operand.java
+│       │                   └── operators/
+│       │                       ├── + AddOperator.java
+│       │                       ├── + CloseOperator.java
+│       │                       ├── + DivideOperator.java
+│       │                       ├── + FactorialOperator.java
+│       │                       ├── + ModulusOperator.java
+│       │                       ├── + MultiplyOperator.java
+│       │                       ├── + OpenOperator.java
+│       │                       ├── + Operator.java
+│       │                       ├── + PowerOperator.java
+│       │                       └── + SubtractOperator.java
+│       └── test/
+│           └── java/
+│               ├── + AddOperatorTest.java
+│               ├── + DivideOperatorTest.java
+│               ├── + EvaluatorTest.java
+│               ├── + MultiplyOperatorTest.java
+│               ├── + OperandTest.java
+│               ├── + OperatorTester.java
+│               ├── + PowerOperatorTest.java
+│               └── + SubtractOperatorTest.java
+└── documentation/
+    ├── - docBase.docx
+    ├── - docBase.pdf
+    └── - Documentation Guidelines.pdf
+```
+
 ## Adding the JUnit 5 Jars to your project.
 
 ### InteliJ
