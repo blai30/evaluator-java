@@ -92,17 +92,15 @@ public class EvaluatorUI extends JFrame implements ActionListener {
                 break;
             case "CE":
                 // Erases text one character at a time; backspace
-                if (txField.getText().length() > 0) {
+                if (txField.getText().length() == 1) {
+                    txField.setText("0");
+                } else if (txField.getText().length() > 1) {
                     txField.setText(txField.getText().substring(0, txField.getText().length() - 1));
                 }
                 break;
             default:
                 // Overwrite text field if 0 is shown
-                if (txField.getText().equals("0")) {
-                    txField.setText(arg0.getActionCommand());
-                } else {
-                    txField.setText(txField.getText() + arg0.getActionCommand());
-                }
+                txField.setText(txField.getText().equals("0") ? arg0.getActionCommand() : txField.getText() + arg0.getActionCommand());
                 break;
         }
     }
