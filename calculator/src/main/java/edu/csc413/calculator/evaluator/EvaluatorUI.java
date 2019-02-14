@@ -1,6 +1,7 @@
 package edu.csc413.calculator.evaluator;
 
 import javax.swing.*;
+import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -23,7 +24,7 @@ public class EvaluatorUI extends JFrame implements ActionListener {
      * C  is for clear, clears entire expression
      * CE is for clear expression, clears last entry up until the last operator.
      */
-    private Button[] buttons = new Button[bText.length];
+    private JButton[] buttons = new JButton[bText.length];
 
     public static void main(String argv[]) {
         EvaluatorUI calc = new EvaluatorUI();
@@ -35,16 +36,24 @@ public class EvaluatorUI extends JFrame implements ActionListener {
         this.txField.setFont(new Font("Courier", Font.BOLD, 28));
 
         add(txField, BorderLayout.NORTH);
+        // Set initial value to 0
+        txField.setText("0");
         txField.setEditable(false);
+        txField.setForeground(Color.white);
+        txField.setBackground(Color.black);
 
         add(buttonPanel, BorderLayout.CENTER);
         buttonPanel.setLayout(new GridLayout(6, 4));
 
         //create 20 buttons with corresponding text in bText[] array
-        Button bt;
+        JButton bt;
         for (int i = 0; i < EvaluatorUI.bText.length; i++) {
-            bt = new Button(bText[i]);
+            bt = new JButton(bText[i]);
             bt.setFont(new Font("Courier", Font.BOLD, 28));
+            bt.setForeground(Color.lightGray);
+            bt.setBackground(new Color(50, 50, 50));
+            bt.setOpaque(true);
+            bt.setBorder(new LineBorder(Color.lightGray, 2));
             buttons[i] = bt;
         }
 
@@ -63,9 +72,7 @@ public class EvaluatorUI extends JFrame implements ActionListener {
         setLocationByPlatform(true);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setVisible(true);
-
-        // Set initial value to 0
-        txField.setText("0");
+        setBackground(new Color(40, 40, 40));
     }
 
     public void actionPerformed(ActionEvent arg0) {
