@@ -19,14 +19,8 @@ public class Evaluator {
     }
 
     private void process(Operator op) {
-        if (op.priority() < 3) {
-            Operand op2 = operandStack.pop();
-            Operand op1 = operandStack.pop();
-            operandStack.push(op.execute(op1, op2));
-        } else {
-            Operand op1 = operandStack.pop();
-            operandStack.push(op.execute(op1, null));
-        }
+        Operand op2 = operandStack.pop();
+        operandStack.push(op.priority() < 4 ? op.execute(operandStack.pop(), op2) : op.execute(op2, null));
     }
 
     public int eval(String expression) {

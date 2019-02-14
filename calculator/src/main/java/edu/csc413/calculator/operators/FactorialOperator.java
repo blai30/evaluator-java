@@ -5,7 +5,7 @@ import edu.csc413.calculator.evaluator.Operand;
 public class FactorialOperator extends Operator {
     @Override
     public int priority() {
-        return 3;
+        return 4;
     }
 
     @Override
