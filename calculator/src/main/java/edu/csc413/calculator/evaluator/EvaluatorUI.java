@@ -15,8 +15,8 @@ public class EvaluatorUI extends JFrame implements ActionListener {
     // numbered from left to right, top to bottom
     // bText[] array contains the text for corresponding buttons
     private static final String[] bText = {
-        "7", "8", "9", "+", "4", "5", "6", "- ", "1", "2", "3",
-        "*", "0", "(", ")", "/", "C", "CE", "^", "="
+        "C", "CE", "^", "+", "7", "8", "9", "-", "4", "5", "6",
+        "*", "1", "2", "3", "/", "0", "(", ")", "=", "!", "%"
     };
 
     /**
@@ -38,7 +38,7 @@ public class EvaluatorUI extends JFrame implements ActionListener {
         txField.setEditable(false);
 
         add(buttonPanel, BorderLayout.CENTER);
-        buttonPanel.setLayout(new GridLayout(5, 4));
+        buttonPanel.setLayout(new GridLayout(6, 4));
 
         //create 20 buttons with corresponding text in bText[] array
         Button bt;
@@ -63,11 +63,9 @@ public class EvaluatorUI extends JFrame implements ActionListener {
         setLocationByPlatform(true);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setVisible(true);
-    }
 
-    private int calculate(String expression) {
-        Evaluator ev = new Evaluator();
-        return ev.eval(expression);
+        // Set initial value to 0
+        txField.setText("0");
     }
 
     public void actionPerformed(ActionEvent arg0) {
@@ -75,14 +73,15 @@ public class EvaluatorUI extends JFrame implements ActionListener {
         switch (arg0.getActionCommand()) {
             case "=":
                 try {
-                    txField.setText(Integer.toString(calculate(txField.getText())));
+                    Evaluator ev = new Evaluator();
+                    txField.setText(Integer.toString(ev.eval(txField.getText())));
                 } catch (EmptyStackException e) {
-                    txField.setText("");
+                    txField.setText("0");
                     System.out.println(e + ": Invalid expression");
                 }
                 break;
             case "C":
-                txField.setText("");
+                txField.setText("0");
                 break;
             case "CE":
                 // Erases text one character at a time; backspace
@@ -91,7 +90,12 @@ public class EvaluatorUI extends JFrame implements ActionListener {
                 }
                 break;
             default:
-                txField.setText(txField.getText() + arg0.getActionCommand());
+                // Overwrite text field if 0 is shown
+                if (txField.getText().equals("0")) {
+                    txField.setText(arg0.getActionCommand());
+                } else {
+                    txField.setText(txField.getText() + arg0.getActionCommand());
+                }
                 break;
         }
     }
