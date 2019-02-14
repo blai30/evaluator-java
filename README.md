@@ -18,36 +18,49 @@ csc413-p1-blai30
 ├── calculator/
 │   └── src/
 │       ├── main/
-│       │   └── java/
-│       │       └── edu/
-│       │           └── csc413/
-│       │               └── calculator/
-│       │                   ├── evaluator/
-│       │                   │   ├── Evaluator.java
-│       │                   │   ├── EvaluatorDriver.java
-│       │                   │   ├── EvaluatorUI.java
-│       │                   │   └── Operand.java
-│       │                   └── operators/
-│       │                       ├── AddOperator.java
-│       │                       ├── CloseOperator.java
-│       │                       ├── DivideOperator.java
-│       │                       ├── FactorialOperator.java
-│       │                       ├── ModulusOperator.java
-│       │                       ├── MultiplyOperator.java
-│       │                       ├── OpenOperator.java
-│       │                       ├── Operator.java
-│       │                       ├── PowerOperator.java
-│       │                       └── SubtractOperator.java
+│       │   ├── java/
+│       │   │   └── edu/
+│       │   │       └── csc413/
+│       │   │           └── calculator/
+│       │   │               ├── evaluator/
+│       │   │               │   ├── Evaluator.java
+│       │   │               │   ├── EvaluatorDriver.java
+│       │   │               │   ├── EvaluatorUI.java
+│       │   │               │   └── Operand.java
+│       │   │               └── operators/
+│       │   │                   ├── AddOperator.java
+│       │   │                   ├── CloseOperator.java
+│       │   │                   ├── DivideOperator.java
+│       │   │                   ├── FactorialOperator.java
+│       │   │                   ├── ModulusOperator.java
+│       │   │                   ├── MultiplyOperator.java
+│       │   │                   ├── OpenOperator.java
+│       │   │                   ├── Operator.java
+│       │   │                   ├── PowerOperator.java
+│       │   │                   └── SubtractOperator.java
+│       │   └── resources/
+│       │       └── emptyfilesofolderappears.noneed
 │       └── test/
-│           └── java/
-│               ├── AddOperatorTest.java
-│               ├── DivideOperatorTest.java
-│               ├── EvaluatorTest.java
-│               ├── MultiplyOperatorTest.java
-│               ├── OperandTest.java
-│               ├── OperatorTester.java
-│               ├── PowerOperatorTest.java
-│               └── SubtractOperatorTest.java
+│           ├── java/
+│           │   ├── AddOperatorTest.java
+│           │   ├── DivideOperatorTest.java
+│           │   ├── EvaluatorTest.java
+│           │   ├── MultiplyOperatorTest.java
+│           │   ├── OperandTest.java
+│           │   ├── OperatorTester.java
+│           │   ├── PowerOperatorTest.java
+│           │   └── SubtractOperatorTest.java
+│           └── resources/
+│               ├── apiguardian-api-1.0.0.jar
+│               ├── junit-jupiter-api-5.2.0.jar
+│               ├── junit-jupiter-engine-5.2.0.jar
+│               ├── junit-jupiter-params-5.2.0.jar
+│               ├── junit-platform-commons-1.2.0.jar
+│               ├── junit-platform-engine-1.2.0.jar
+│               ├── junit-platform-launcher-1.2.0.jar
+│               ├── junit-platform-runner-1.2.0.jar
+│               ├── junit-platform-suite-api-1.2.0.jar
+│               └── opentest4j-1.1.0.jar
 └── documentation/
     ├── docBase.docx
     ├── docBase.pdf
