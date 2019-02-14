@@ -9,7 +9,7 @@
 ### Note failure to completely fill out this README.md could cause you to recieve a  0 for your project until correctly done
 
 ## File Structure
-```js
+```json
 csc413-p1-blai30
 .
 ├── Assignment1.pdf
