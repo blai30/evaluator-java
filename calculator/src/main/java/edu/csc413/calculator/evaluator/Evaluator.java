@@ -20,6 +20,8 @@ public class Evaluator {
 
     private void process(Operator op) {
         Operand op2 = operandStack.pop();
+
+        // All operators except factorial take one operand
         operandStack.push(op.priority() < 4 ? op.execute(operandStack.pop(), op2) : op.execute(op2, null));
     }
 
