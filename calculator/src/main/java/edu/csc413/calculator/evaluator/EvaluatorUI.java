@@ -1,5 +1,7 @@
 package edu.csc413.calculator.evaluator;
 
+import edu.csc413.calculator.operators.Operator;
+
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
@@ -75,33 +77,81 @@ public class EvaluatorUI extends JFrame implements ActionListener {
         setBackground(new Color(40, 40, 40));
     }
 
+    private boolean equalsState = false;
+
     public void actionPerformed(ActionEvent arg0) {
         // You need to fill in this function
-        switch (arg0.getActionCommand()) {
-            case "=":
-                try {
-                    Evaluator ev = new Evaluator();
-                    txField.setText(Integer.toString(ev.eval(txField.getText())));
-                } catch (EmptyStackException e) {
-                    txField.setText("0");
-                    System.out.println(e + ": Invalid expression");
-                }
-                break;
-            case "C":
+//        switch (arg0.getActionCommand()) {
+//            case "=":
+//                try {
+//                    Evaluator ev = new Evaluator();
+//                    txField.setText(Integer.toString(ev.eval(txField.getText())));
+//                } catch (EmptyStackException e) {
+//                    txField.setText("0");
+//                    System.out.println(e + ": Invalid expression");
+//                }
+//                break;
+//            case "C":
+//                txField.setText("0");
+//                break;
+//            case "CE":
+//                // Erases text one character at a time; backspace
+//                if (txField.getText().length() == 1) {
+//                    txField.setText("0");
+//                } else if (txField.getText().length() > 1) {
+//                    txField.setText(txField.getText().substring(0, txField.getText().length() - 1));
+//                }
+//                break;
+//            default:
+//                // Overwrite text field if 0 is shown
+//                txField.setText(txField.getText().equals("0") ? arg0.getActionCommand() : txField.getText() + arg0.getActionCommand());
+//                break;
+
+
+        // This differs from above because the textfield gets overwritten if the input is an operand and the
+        // result of a previous expression is shown in the textfield instead of appending the operand input.
+        // If the input is an operator then the textfield will append rather than overwrite.
+
+        if (arg0.getActionCommand().equals("=")) {
+            // Evaluates expression in the textfield
+            try {
+                Evaluator ev = new Evaluator();
+                txField.setText(Integer.toString(ev.eval(txField.getText())));
+                equalsState = true;
+            } catch (EmptyStackException e) {
                 txField.setText("0");
-                break;
-            case "CE":
-                // Erases text one character at a time; backspace
-                if (txField.getText().length() == 1) {
-                    txField.setText("0");
-                } else if (txField.getText().length() > 1) {
-                    txField.setText(txField.getText().substring(0, txField.getText().length() - 1));
-                }
-                break;
-            default:
-                // Overwrite text field if 0 is shown
-                txField.setText(txField.getText().equals("0") ? arg0.getActionCommand() : txField.getText() + arg0.getActionCommand());
-                break;
+                System.out.println(e + ": Invalid expression");
+            }
+        }
+
+        else if (arg0.getActionCommand().equals("C")) {
+            // Clear
+            txField.setText("0");
+        }
+
+        else if (arg0.getActionCommand().equals("CE")) {
+            // Erases text one character at a time; backspace
+            if (txField.getText().length() == 1) {
+                txField.setText("0");
+            } else if (txField.getText().length() > 1) {
+                txField.setText(txField.getText().substring(0, txField.getText().length() - 1));
+            }
+        }
+
+        else if (Operand.check(arg0.getActionCommand())) {
+            // Operand inputs overwrites textfield if the expression is 0 or if the textfield shows the
+            // result of a previous evaluation
+            if (txField.getText().equals("0") || equalsState) {
+                txField.setText(arg0.getActionCommand());
+                equalsState = false;
+            } else {
+                txField.setText(txField.getText() + arg0.getActionCommand());
+            }
+        }
+
+        else {
+            // Operator inputs always append
+            txField.setText(txField.getText() + arg0.getActionCommand());
         }
     }
 }
