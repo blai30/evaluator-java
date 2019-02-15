@@ -11,7 +11,7 @@
 ## File Structure
 ```css
 csc413-p1-blai30
-.
+./
 ├── Assignment1.pdf
 ├── classDiagram.txt
 ├── README.md
