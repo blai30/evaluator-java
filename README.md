@@ -8,6 +8,11 @@
 
 ### Note failure to completely fill out this README.md could cause you to recieve a  0 for your project until correctly done
 
+## Additional Work
+* Factorial operator
+* Modulus operator
+* EvaluatorUI text field behavior
+
 ## File Structure
 ```css
 csc413-p1-blai30
